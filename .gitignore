@@ -1,0 +1,62 @@
+# -------------------------
+# Node / Backend
+# -------------------------
+backend/node_modules/
+backend/package-lock.json
+backend/.env
+backend/.env.local
+backend/.DS_Store
+backend/npm-debug.log
+backend/yarn-debug.log
+backend/yarn-error.log
+
+# Ignore build artifacts
+backend/dist/
+backend/tmp/
+backend/logs/
+
+# -------------------------
+# Angular / Frontend
+# -------------------------
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env
+frontend/.env.local
+frontend/.DS_Store
+
+# Angular cache
+frontend/.angular/cache/
+
+# Temporary files
+frontend/npm-debug.log
+frontend/yarn-debug.log
+frontend/yarn-error.log
+
+# -------------------------
+# Global environment files
+# -------------------------
+.env
+.env.local
+*.env
+
+# -------------------------
+# OS / System files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# IDE / Editor files
+# -------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+logs/

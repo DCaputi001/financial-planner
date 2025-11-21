@@ -1,0 +1,56 @@
+<!--
+  index.html
+  ------------------------------------------------------------
+  The main HTML entry point for the Angular Financial Planner
+  application. Angular CLI uses this file as the shell page into
+  which all application components are rendered.
+
+  Key Responsibilities:
+  - Defines document metadata (charset, viewport, title)
+  - Loads the root Angular component (<app-root>)
+  - Specifies a <base> href for correct routing
+  - Provides favicon reference
+-->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Ensures correct character encoding -->
+  <meta charset="utf-8">
+
+  <!-- Displayed as the browser tab title -->
+  <title>Financial Planner</title>
+
+  <!--
+    Base href:
+    ------------------------------------------------------------
+    Required for Angular routing to function correctly.
+    Specifies that all relative routes are resolved from the
+    domain root. Without this, navigation would break when
+    refreshing or loading deep-linked URLs.
+  -->
+  <base href="/">
+
+  <!--
+    Viewport meta tag:
+    Ensures responsive scaling on mobile and tablet devices.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Application favicon -->
+  <link rel="icon" type="image/x-icon" href="fin-logo.png">
+</head>
+
+<body>
+  <!--
+    Root Angular Component:
+    ------------------------------------------------------------
+    Angular bootstraps the application by rendering the AppComponent
+    into this tag. All other routed components appear inside the
+    <router-outlet> located in app.component.html.
+  -->
+  <app-root></app-root>
+</body>
+
+</html>

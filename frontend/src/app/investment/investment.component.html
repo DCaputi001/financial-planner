@@ -1,0 +1,85 @@
+<!--
+  Component: Investment Growth Calculator Template
+  ------------------------------------------------------------
+  Purpose:
+    Provides the user interface for entering investment parameters,
+    running a compound-interest calculation, and viewing the resulting
+    final balance and total interest earned.
+
+  Key Features:
+    - Input fields bound to component properties (ngModel)
+    - Button to trigger the calculation handler
+    - Results card dynamically displayed based on output
+    - Optional loading indicator while computation is in progress
+-->
+
+<div class="page-container">
+
+  <!-- Main Page Title -->
+  <h1 class="title">Investment Growth Calculator</h1>
+
+  <div class="card-container">
+
+    <!--
+      Form Card
+      ------------------------------------------------------------
+      Captures all inputs needed for the investment calculation:
+      - Initial investment amount
+      - Monthly deposit amount
+      - Annual interest rate
+      - Duration in years
+
+      Values are bound via ngModel for two-way binding and are used
+      inside the component logic when onCalculate() is executed.
+    -->
+    <div class="card form-card">
+      <h2>Input Your Investment Details</h2>
+
+      <label>Initial Amount</label>
+      <input type="number" [(ngModel)]="initialAmount" />
+
+      <label>Monthly Deposit</label>
+      <input type="number" [(ngModel)]="monthlyDeposit" />
+
+      <label>Annual Interest Rate (%)</label>
+      <input type="number" [(ngModel)]="annualRate" />
+
+      <label>Years</label>
+      <input type="number" [(ngModel)]="years" />
+
+      <!-- Trigger calculation method -->
+      <button (click)="onCalculate()">Calculate</button>
+    </div>
+
+    <!--
+      Results Card
+      ------------------------------------------------------------
+      Displays the completed investment results once available:
+      - Final balance after compounding
+      - Total interest earned over the period
+
+      The card appears only if finalBalance is defined.
+    -->
+    <div class="card results-card" *ngIf="finalBalance">
+      <h2>Results</h2>
+
+      <p class="result-label">Final Balance</p>
+      <p class="result-value">${{ finalBalance }}</p>
+
+      <p class="result-label">Total Interest Earned</p>
+      <p class="result-value">${{ totalInterest }}</p>
+    </div>
+
+  </div>
+
+  <!--
+    Loading Indicator
+    ------------------------------------------------------------
+    Appears only when the calculation is running.
+    Useful for asynchronous or backend-based computations.
+  -->
+  <div class="loading" *ngIf="loading">
+    Calculating...
+  </div>
+
+</div>

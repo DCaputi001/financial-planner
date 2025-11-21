@@ -1,0 +1,144 @@
+/* 
+  .page-container
+  ------------------------------------------------------------
+  Defines the main layout container for the page content.
+  Centers all content, applies global spacing, and sets a
+  clean sans-serif font for visual consistency.
+*/
+.page-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/*
+  .title
+  ------------------------------------------------------------
+  Styles the main page heading. Provides center alignment,
+  large font size, strong weight, and a financial-themed color.
+*/
+.title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #2a3f5f;
+}
+
+/*
+  .card-container
+  ------------------------------------------------------------
+  A flexible layout used to position multiple cards side-by-side.
+  Uses flexbox to evenly distribute cards while supporting wrap
+  behavior for smaller screen sizes.
+*/
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/*
+  .card
+  ------------------------------------------------------------
+  Shared card styling for input, results, and projection panels.
+  Adds padding, rounded corners, and a soft drop shadow for a
+  clean dashboard-style appearance.
+*/
+.card {
+  background: #ffffff;
+  padding: 25px;
+  width: 380px;
+  border-radius: 14px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+/*
+  .card h2
+  ------------------------------------------------------------
+  Section title styling within each card. Slightly smaller
+  than main page title for visual hierarchy.
+*/
+.card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: #34495e;
+}
+
+/*
+  Form elements: labels and inputs
+  ------------------------------------------------------------
+  Labels are bold and spaced to improve readability.
+  Input fields are styled to be fully responsive with clean
+  padding, rounded edges, and a subtle border.
+*/
+label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+}
+
+/*
+  Buttons
+  ------------------------------------------------------------
+  Primary action button styled using a modern green color
+  scheme. Rounded edges and hover interaction improve usability.
+*/
+button {
+  width: 100%;
+  padding: 12px;
+  background: #1abc9c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #16a085;
+}
+
+/*
+  Result card styles
+  ------------------------------------------------------------
+  Styles used in cards that display numerical results and labels.
+*/
+.results-card p {
+  margin: 10px 0;
+}
+
+.result-label {
+  font-weight: bold;
+  color: #34495e;
+}
+
+.result-value {
+  font-size: 1.4rem;
+  color: #1abc9c;
+  font-weight: bold;
+}
+
+/*
+  .loading
+  ------------------------------------------------------------
+  Styles for messages shown while background calculations are
+  running. Centered text with slightly larger font.
+*/
+.loading {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 20px;
+  color: #2c3e50;
+}

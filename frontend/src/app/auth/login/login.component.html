@@ -1,0 +1,50 @@
+<!-- 
+  Component: Login Page Template
+  Purpose:
+    Renders the login UI, captures user credentials (email and password),
+    and triggers the component's authentication logic via onLogin().
+  
+  Key Features:
+    - Two-way data binding using ngModel to sync input fields with component properties.
+    - Simple message display area for success/error feedback.
+    - RouterLink navigation to registration page.
+    - Clean, minimal structure suitable for mobile and desktop layouts.
+-->
+
+<div class="page-wrapper">
+  <!-- Card container for visual grouping of login fields -->
+  <div class="card">
+
+    <!-- Section title for the login form -->
+    <h2 class="section-title">Login</h2>
+
+    <!-- Email input field -->
+    <!--
+      Binds user input to "email" in the component.
+      HTML5 "email" type performs basic format validation in the browser.
+    -->
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email">
+
+    <!-- Password input field -->
+    <!--
+      Binds user input to "password" in the component.
+      Input type "password" ensures characters are masked.
+    -->
+    <label>Password</label>
+    <input type="password" [(ngModel)]="password">
+
+    <!-- Login button -->
+    <!-- 
+      Triggers authentication logic in the component (onLogin()).
+      Logic may include input validation, API calls, and error handling.
+    -->
+    <button (click)="onLogin()">Login</button>
+
+    <!-- Feedback message to show login errors or success messages dynamically -->
+    <p>{{ message }}</p>
+
+    <!-- Navigation link to registration page for new users -->
+    <a routerLink="/register">Need an account? Register</a>
+  </div>
+</div>

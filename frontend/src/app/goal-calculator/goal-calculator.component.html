@@ -1,0 +1,101 @@
+<!--
+  Component: Savings Goal Optimization Template
+  Purpose:
+    Provides the UI for calculating the required monthly deposit
+    needed to reach a financial savings goal within a specified
+    time period and interest rate. Displays calculation results
+    and a month-by-month projection table.
+
+  Key Features:
+    - Input form for goal amount, saving duration, and interest rate.
+    - Trigger button for initiating the calculation algorithm.
+    - Loading indicator displayed while computation is running.
+    - Output of required monthly deposit.
+    - Projection table showing month-by-month growth of savings.
+-->
+
+<div class="page-wrapper">
+
+  <!--
+    Card: Input Form
+    --------------------
+    Captures user input parameters:
+    - Total savings goal
+    - Number of years to save
+    - Annual interest rate  
+    Values are bound via ngModel to the component's properties.
+  -->
+  <div class="card">
+    <h2 class="section-title">Savings Goal Optimization</h2>
+
+    <div class="form-section">
+
+      <!-- Goal amount input -->
+      <label>Goal Amount ($)</label>
+      <input type="number" [(ngModel)]="goalAmount">
+
+      <!-- Saving duration input -->
+      <label>Years to Save</label>
+      <input type="number" [(ngModel)]="years">
+
+      <!-- Annual interest rate input -->
+      <label>Annual Interest Rate (%)</label>
+      <input type="number" [(ngModel)]="annualRate">
+
+      <!-- Calculate button -->
+      <!-- Calls onCalculate() to run the optimization algorithm -->
+      <button (click)="onCalculate()">
+        Calculate Required Monthly Deposit
+      </button>
+
+    </div>
+  </div>
+
+  <!--
+    Card: Loading Indicator
+    ---------------------------
+    Displayed while the optimization algorithm is running.
+    Helps communicate that the computation may take time.
+  -->
+  <div *ngIf="loading" class="card">
+    <p>Running optimization algorithm...</p>
+  </div>
+
+  <!--
+    Card: Required Monthly Deposit Result
+    -----------------------------------------
+    Shows the required monthly contribution once computed.
+  -->
+  <div *ngIf="requiredDeposit" class="card result-box">
+    <h3>Required Monthly Deposit</h3>
+    <p class="result-value">${{ requiredDeposit }}</p>
+  </div>
+
+  <!--
+    Card: Projection Table
+    --------------------------
+    Displays a detailed month-by-month projection of balance growth.
+    Only appears if 'projection' array contains computed values.
+  -->
+  <div *ngIf="projection.length > 0" class="card">
+    <h3 class="section-title">Projection Overview</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Balance ($)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- Loop through projection entries and display monthly data -->
+        <tr *ngFor="let entry of projection">
+          <td>{{ entry.month }}</td>
+          <td>{{ entry.balance }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

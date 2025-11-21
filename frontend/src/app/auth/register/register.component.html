@@ -1,0 +1,50 @@
+<!-- 
+  Component: Registration Page Template
+  Purpose:
+    Provides the user interface for creating a new account.
+    Captures email and password input, binds them to the component,
+    and triggers onRegister() to send the data to the backend.
+
+  Key Features:
+    - Two-way data binding to component properties using ngModel.
+    - A simple, clean UI structure containing form elements inside a card layout.
+    - Feedback area to display registration success or error messages.
+    - Navigation link to the login page for existing users.
+-->
+
+<div class="page-wrapper">
+  <div class="card">
+
+    <!-- Section heading for the registration form -->
+    <h2 class="section-title">Register</h2>
+
+    <!-- Email input field -->
+    <!-- 
+      Uses HTML5 "email" type for basic format validation.
+      Binds to 'email' property in the component.
+    -->
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email">
+
+    <!-- Password input field -->
+    <!-- 
+      Binds to 'password' property in the component.
+      Password characters are masked by default.
+    -->
+    <label>Password</label>
+    <input type="password" [(ngModel)]="password">
+
+    <!-- Register button -->
+    <!-- 
+      Calls the component's onRegister() method to attempt account creation.
+    -->
+    <button (click)="onRegister()">Register</button>
+
+    <!-- Message area for success or error feedback -->
+    <p>{{ message }}</p>
+
+    <!-- Link back to login page for users who already have an account -->
+    <a routerLink="/login">Already have an account? Login</a>
+
+  </div>
+</div>

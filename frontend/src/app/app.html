@@ -1,0 +1,60 @@
+<!--
+  Component: Main Navigation Bar
+  ------------------------------------------------------------
+  Purpose:
+    Provides global navigation for the Financial Planner application.
+    Displays links dynamically depending on user authentication state
+    via the SessionService.
+
+  Key Features:
+    - Brand/Title linking to the home route
+    - Navigation links for Investment and Savings Goal tools
+    - Login/Register links when user is logged out
+    - Welcome message and Logout button when user is logged in
+    - router-outlet for rendering routed components below the navbar
+-->
+
+<nav class="navbar">
+
+  <!-- Left Section: Brand + Main Navigation Links -->
+  <div class="nav-left">
+
+    <!-- Application title; navigates to home -->
+    <a routerLink="/" class="brand">Financial Planner</a>
+
+    <!-- Navigation links to core financial tools -->
+    <a routerLink="/investment" class="nav-link">Investment</a>
+    <a routerLink="/goal" class="nav-link">Savings Goal</a>
+  </div>
+
+  <!-- Right Section: Auth-Based Navigation -->
+  <div class="nav-right">
+
+    <!-- Visible only when user is logged OUT -->
+    <a *ngIf="!session.isLoggedIn()" routerLink="/login" class="nav-link">Login</a>
+    <a *ngIf="!session.isLoggedIn()" routerLink="/register" class="nav-link">Register</a>
+
+    <!-- Visible only when user is logged IN -->
+    <span *ngIf="session.isLoggedIn()" class="welcome">
+      Welcome, {{ session.getEmail() }}
+    </span>
+
+    <!-- Logout button (click triggers logout handler in component) -->
+    <a
+      *ngIf="session.isLoggedIn()"
+      (click)="logout()"
+      class="nav-link logout-btn"
+    >
+      Logout
+    </a>
+
+  </div>
+</nav>
+
+<!--
+  router-outlet
+  ------------------------------------------------------------
+  Serves as the dynamic content area. Angular injects routed
+  components into this container based on the current URL.
+-->
+<router-outlet></router-outlet>

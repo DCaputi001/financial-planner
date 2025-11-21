@@ -1,0 +1,7 @@
+/* Component-specific overrides kept minimal on purpose */
+/* This component mainly relies on global styles for consistency */
+
+/* Optional additional spacing for the projection table */
+table td, table th {
+  text-align: center;
+}

@@ -1,0 +1,41 @@
+<!--
+  Component: Verification Page Template
+  Purpose:
+    This interface is used during the multi-factor authentication (MFA)
+    process. After a user logs in, they are required to enter the
+    verification code sent to their email. This template displays the
+    email being verified, provides an input field for the code, and
+    triggers the component's onVerify() method.
+
+  Key Features:
+    - Displays the user's pending email for clarity.
+    - Two-way binding for the verification code input via ngModel.
+    - Clean layout with a feedback message for success or error states.
+-->
+
+<div class="page-wrapper">
+  <div class="card">
+
+    <!-- Title for MFA verification step -->
+    <h2 class="section-title">Verify Login</h2>
+
+    <!-- Display the email address where the code was sent -->
+    <!-- Helps reassure users that the code was sent to the correct account -->
+    <p>A verification code was sent to: <strong>{{ email }}</strong></p>
+
+    <!-- Verification code input -->
+    <!--
+      Binds the entered MFA code to the 'code' property on the component.
+      A text field is used to allow numeric or alphanumeric codes.
+    -->
+    <label>Verification Code</label>
+    <input type="text" [(ngModel)]="code">
+
+    <!-- Button to trigger the verification process -->
+    <button (click)="onVerify()">Verify</button>
+
+    <!-- Display validation or error messages from the component -->
+    <p>{{ message }}</p>
+
+  </div>
+</div>

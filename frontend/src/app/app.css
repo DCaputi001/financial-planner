@@ -1,0 +1,102 @@
+/* 
+  .main-btn
+  ------------------------------------------------------------
+  Styles the primary action button used throughout the app.
+  Features include:
+  - Consistent padding for clickable size
+  - Rounded corners for modern UI appearance
+  - Teal color scheme matching brand identity
+  - Hover effect for improved user feedback
+*/
+.main-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #1abc9c;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.main-btn:hover {
+  background: #16a085;
+}
+
+/* 
+  Navigation Bar Container
+  ------------------------------------------------------------
+  A full-width horizontal navigation bar with:
+  - Flexbox layout for left/right alignment
+  - Sticky brand color theme
+  - Subtle shadow to separate it from the page content
+*/
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1abc9c;
+  padding: 12px 24px;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/*
+  Left side of the navbar: brand / logo
+  ------------------------------------------------------------
+  Styled to stand out visually with a bold, larger font.
+*/
+.nav-left .brand {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/*
+  Right side of the navbar: navigation links
+  ------------------------------------------------------------
+  Applies spacing and removes default link styles to create
+  clean, modern navigation.
+*/
+.nav-right a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/*
+  Hover interaction for navigation links
+  ------------------------------------------------------------
+  Adds underline interaction to give users visual feedback.
+*/
+.nav-right a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/*
+  .active
+  ------------------------------------------------------------
+  Applied to the currently active route.
+  Provides visual highlight so users know which page they are on.
+*/
+.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* 
+  .page-content
+  ------------------------------------------------------------
+  Styles the main content wrapper to:
+  - Keep content centered
+  - Constrain maximum width for readability
+  - Add spacing around the content block
+*/
+.page-content {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+}
