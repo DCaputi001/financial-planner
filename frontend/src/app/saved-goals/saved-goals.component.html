@@ -1,0 +1,49 @@
+<div class="page-wrapper">
+
+  <h2>My Saved Goals</h2>
+
+  <div *ngIf="loading" class="card">
+    Loading goals...
+  </div>
+
+  <div *ngIf="!loading && goals.length === 0" class="card">
+    <p>You have no saved goals yet.</p>
+  </div>
+
+  <div *ngIf="goals.length > 0">
+
+    <div *ngFor="let g of goals" class="card goal-card">
+
+      <h3>Goal: ${{ g.goalAmount }}</h3>
+      <p>Years: {{ g.years }}</p>
+      <p>Rate: {{ g.annualRate }}%</p>
+      <p>Required Deposit: ${{ g.requiredDeposit }}</p>
+
+      <button class="delete-btn" (click)="deleteGoal(g._id)">
+        Delete Goal
+      </button>
+
+      <details>
+        <summary>View Projection</summary>
+        <table>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let p of g.projection">
+              <td>{{ p.month }}</td>
+              <td>{{ p.balance }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+
+    </div>
+
+  </div>
+
+</div>

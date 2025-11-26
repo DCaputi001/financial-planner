@@ -1,17 +1,17 @@
 /**
  * @file goal-calculator.component.ts
  * @description
- * Angular component responsible for collecting savings goal inputs
- * (goal amount, number of years, and annual interest rate) and
- * sending an optimization request to the backend API. The backend
- * returns the required monthly deposit as well as an optional
- * projection table showing month-by-month balance growth.
+ * Angular component responsible for collecting user savings goal inputs
+ * (goal amount, years, and annual interest rate), validating them, and
+ * sending a request to the backend optimization API. The backend returns
+ * the required monthly deposit and a projection table showing balance growth.
  *
- * This component:
- *  - Validates user input for safe numeric values.
- *  - Constructs and sends a POST request to the financial optimizer API.
- *  - Displays a loading state while computation is in progress.
- *  - Renders the required monthly deposit and projection results.
+ * This component now includes:
+ *  - Input validation.
+ *  - Binary search optimization request.
+ *  - Displaying required deposit and projection output.
+ *  - A "Save Goal" feature that sends completed goal data to the backend
+ *    database API for persistent storage.
  */
 
 import { Component } from '@angular/core';
@@ -19,9 +19,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { GoalService } from '../services/goal.service';
 
 /**
- * Shape of the request body sent to the backend.
+ * Represents the request payload sent to the optimizer backend.
  */
 interface GoalRequest {
   goalAmount: number;
@@ -30,8 +31,7 @@ interface GoalRequest {
 }
 
 /**
- * Represents one row in the projection dataset.
- * Each entry contains the month number and projected balance.
+ * Represents a single projection row returned by the backend.
  */
 interface ProjectionEntry {
   month: number;
@@ -39,7 +39,7 @@ interface ProjectionEntry {
 }
 
 /**
- * Represents the structure of the backend response for a goal request.
+ * Represents the structure of the backend response from the optimizer.
  */
 interface GoalResponse {
   requiredDeposit: string;
@@ -58,36 +58,37 @@ interface GoalResponse {
 export class GoalCalculatorComponent {
 
   /**
-   * Input fields bound to template form controls.
+   * Input fields bound to the goal calculator form.
    */
   goalAmount = 0;
   years = 1;
   annualRate = 0;
 
   /**
-   * UI state indicators.
+   * UI state flags.
    */
   loading = false;
 
   /**
-   * Outputs returned from backend API.
+   * Outputs returned from backend optimizer.
    */
   requiredDeposit: string | null = null;
   projection: ProjectionEntry[] = [];
 
   /**
-   * API endpoint derived from environment configuration.
+   * API endpoint for performing the optimization.
    */
   private apiUrl = `${environment.apiUrl}/api/goals/required-deposit`;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private goalService: GoalService
+  ) {}
 
   /**
-   * Validates user input before making an API request.
-   * Ensures all fields are present, numeric, and within acceptable ranges.
+   * Validates form inputs to ensure numeric and safe values.
    *
-   * @returns string | null - Returns an error message if validation fails,
-   *                          or null if all inputs are valid.
+   * @returns string | null - Returns an error message, or null if valid.
    */
   validateInputs(): string | null {
     if (
@@ -122,9 +123,9 @@ export class GoalCalculatorComponent {
   }
 
   /**
-   * Handles the "Calculate" action from the UI.
-   * Performs validation, constructs the API request payload,
-   * sends it to the backend optimizer, and handles success/error responses.
+   * Handles click of the "Calculate" button.
+   * Constructs request payload, calls optimization API,
+   * and assigns backend results to component state.
    */
   onCalculate(): void {
     const error = this.validateInputs();
@@ -133,7 +134,6 @@ export class GoalCalculatorComponent {
       return;
     }
 
-    // Reset state for a new calculation
     this.loading = true;
     this.requiredDeposit = null;
     this.projection = [];
@@ -154,6 +154,35 @@ export class GoalCalculatorComponent {
         this.loading = false;
         console.error('Goal optimization API error:', err);
         alert('A server error occurred. Please try again later.');
+      }
+    });
+  }
+
+  /**
+   * Persists the completed savings goal to the database.
+   * Requires that a successful calculation has been performed.
+   */
+  saveGoal(): void {
+    if (!this.requiredDeposit || this.projection.length === 0) {
+      alert('Please calculate the required deposit before saving.');
+      return;
+    }
+
+    const payload = {
+      goalAmount: this.goalAmount,
+      years: this.years,
+      annualRate: this.annualRate,
+      requiredDeposit: Number(this.requiredDeposit),
+      projection: this.projection
+    };
+
+    this.goalService.saveGoal(payload).subscribe({
+      next: () => {
+        alert('Goal saved successfully.');
+      },
+      error: (err) => {
+        console.error('Error saving goal:', err);
+        alert('An error occurred while saving the goal.');
       }
     });
   }

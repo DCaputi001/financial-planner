@@ -95,6 +95,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     loadComponent: () =>
       import('./goal-calculator/goal-calculator.component').then(m => m.GoalCalculatorComponent)
+  },
+  {
+  path: 'saved-goals',
+  loadComponent: () =>
+    import('./saved-goals/saved-goals.component').then(m => m.SavedGoalsComponent)
   }
 
 ];

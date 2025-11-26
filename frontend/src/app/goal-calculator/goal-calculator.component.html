@@ -49,6 +49,9 @@
       </button>
 
     </div>
+    <div *ngIf="requiredDeposit" class="card">
+      <button (click)="saveGoal()">Save This Goal</button>
+    </div>
   </div>
 
   <!--

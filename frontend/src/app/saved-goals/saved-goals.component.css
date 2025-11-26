@@ -1,0 +1,34 @@
+.page-wrapper {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.goal-card {
+  margin-bottom: 20px;
+}
+
+.delete-btn {
+  background-color: #c0392b;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+td, th {
+  border: 1px solid #ccc;
+  padding: 6px;
+}
